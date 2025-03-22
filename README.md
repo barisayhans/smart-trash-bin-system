@@ -45,19 +45,4 @@ The system consists of three main components:
 - 🔔 **Automated notifications** when bins are full.
 - 🏙️ **Optimized waste collection routes** for cost reduction.
 
-## 🚧 Challenges & Solutions
 
-| **Challenge**                         | **Solution** |
-|----------------------------------------|-------------|
-| Reliable LoRa communication            | Optimize antenna placement & settings |
-| Powering remote trash bins             | Use **solar panels** & **low-power ESP32 modes** |
-| Sensor accuracy in different weather   | Implement **data filtering** & calibration |
-| Cloud security & data privacy          | Use **encrypted transmission** & secure APIs |
-
-## 📌 Future Improvements
-- 🧠 **AI-powered waste collection route optimization**.
-- 🌱 **Integration with solar-powered trash bins**.
-- 📲 **Mobile app for real-time monitoring**.
-- 📉 **Predictive maintenance alerts** for malfunctioning bins.
-
-## 📂 Repository Structure
