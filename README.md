@@ -1,48 +1,62 @@
-# 🗑️ Smart Trash Bin System Using ESP32 and LoRa
+Smart Trash Bin
+This project is an IoT-based smart trash bin system built with ESP32, ultrasonic sensors, a servo motor, and an OLED display. It monitors the trash level inside the bin and automatically opens the lid when someone approaches.
 
-## 📌 Project Overview
-The **Smart Trash Bin System** is designed to optimize waste collection by **monitoring bin fill levels in real-time**. It utilizes **ESP32 microcontrollers**, **ultrasonic sensors**, and **LoRa communication** to transmit data to a cloud-based **IoT platform**. Municipal authorities can use this data to **optimize garbage collection routes**, reduce operational costs, and minimize environmental impact.
+Features
+Automatic lid opening: A proximity sensor detects when a person is near and opens the lid via a servo motor.
 
-## 🚀 Features
-- 📡 **Real-time monitoring** of trash levels using ultrasonic sensors.
-- 🔗 **LoRa-based long-range wireless communication**.
-- ☁️ **Cloud storage & data visualization** using **Azure IoT Hub**.
-- 📢 **Automated notifications** for full bins.
-- 🖥️ **Web-based dashboard** for monitoring bin statuses.
-- 🔄 **Backend implementation with Java Spring Boot**.
+Trash level measurement: Uses a second ultrasonic sensor to measure how full the trash bin is.
 
-## 🏗️ System Architecture
-The system consists of three main components:
+OLED display: Shows the current fill percentage and trash status.
 
-1. **Trash Bin Unit (ESP32 & Sensors)**
-   - **ESP32** collects data from an **HC-SR04 ultrasonic sensor**.
-   - Data is transmitted via an **SX1276/SX1278 LoRa module** to a central server.
+Arduino IoT Cloud integration: Sends the trash fill level and status text to the cloud for remote monitoring.
 
-2. **IoT Platform & Data Storage**
-   - Data is sent to a **cloud database (Firebase/ThingsBoard)** via a LoRa gateway.
-   - The IoT platform provides **real-time visualization & historical data analysis**.
+Serial monitor output: Logs distance and fill level readings for debugging.
 
-3. **User Interface & Notification System**
-   - A **web dashboard** allows municipal workers to monitor bin status.
-   - Automated alerts notify when bins are full.
+Hardware Components
+ESP32 development board
 
-## 🔧 Components Used
+Two HC-SR04 ultrasonic sensors
 
-### **Hardware**
-- 🖥️ **ESP32 Development Board** – Data processing & LoRa communication.
-- 📡 **HC-SR04 Ultrasonic Sensor** – Fill level detection.
-- 🔗 **SX1276/SX1278 LoRa Module** – Long-range communication.
+Servo motor (connected to lid)
 
-### **Software**
-- 🔌 **Arduino IDE** – ESP32 programming.
-- 🌐 **LoRaWAN Protocol** – For communication.
-- ☁️ **Azure IoT Hub & DevOps** – Cloud data storage & visualization.
-- 💻 **Java Spring Boot** – Backend processing.
+OLED display (SSD1306 128x64)
 
-## 🎯 Expected Outcomes
-- ✅ A working **Smart Trash Bin System** that detects and reports fill levels.
-- 📊 **Real-time web dashboard** displaying bin data.
-- 🔔 **Automated notifications** when bins are full.
-- 🏙️ **Optimized waste collection routes** for cost reduction.
+Connecting wires and power supply
 
+Pin Configuration
+Component	ESP32 Pin
+Ultrasonic Sensor 1 TRIG	GPIO 4
+Ultrasonic Sensor 1 ECHO	GPIO 5
+Ultrasonic Sensor 2 TRIG	GPIO 12
+Ultrasonic Sensor 2 ECHO	GPIO 13
+Servo Motor	GPIO 18
+OLED Display (I2C)	GPIO 21(SDA), GPIO 22(SCL)
 
+How It Works
+The first ultrasonic sensor detects if an object (e.g., a hand) is closer than 3 cm and opens the lid by turning the servo motor to 90 degrees. After 3 seconds, the lid closes automatically.
+
+The second ultrasonic sensor measures the distance to the trash level inside the bin.
+
+The distance is mapped to a fill percentage (0-100%), and the status text updates accordingly.
+
+Fill level and status are displayed on the OLED and sent to the Arduino IoT Cloud.
+
+Readings are printed on the serial monitor every 10 seconds.
+
+Usage
+Configure your WiFi and Arduino IoT Cloud credentials in the arduino_secrets.h file.
+
+Upload the code to your ESP32 device.
+
+Open the serial monitor to view debug information.
+
+Monitor the trash fill level remotely via the Arduino IoT Cloud dashboard.
+
+Dependencies
+ArduinoIoTCloud library
+
+ESP32Servo library
+
+Adafruit GFX and SSD1306 libraries
+
+Install these via the Arduino Library Manager.
